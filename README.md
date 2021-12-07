@@ -1,6 +1,6 @@
 # Login and Registration for Roll call application
 
-![Diagram](.docs/report_system_schema.drawio.png)
+![Diagram](./docs/report_system_schema.drawio.png)
 
 ## Unit tests for exam project of the Testing subject.
 
