@@ -1,33 +1,32 @@
 
-const { TestWatcher } = require('@jest/core');
 const { Builder, By, Key, until } = require('selenium-webdriver');
 
 let test_cases = [
     {
         email: 'ANDC@kea.dk',
+        password: 'WRONG',
+        expect_succes: false
+    },
+    {
+        email: 'WRONG',
         password: 'ASBCASBC',
+        expect_succes: false
+    },
+    {
+        email: 'WRONG@kea.dk',
+        password: 'WRONG',
         expect_succes: false
     },
     {
         email: 'ANDC@kea.dk',
         password: 'ASBCASBC',
-        expect_succes: false
-    },
-    {
-        email: 'ANDC@kea.dk',
-        password: 'ASBCASBC',
-        expect_succes: false
-    },
-    {
-        email: 'ANDC@kea.dk',
-        password: 'ASBCASBC',
-        expect_succes: false
+        expect_succes: true
     }
 ]
 
 test_cases.forEach(async (test_case) => {
     let driver = await new Builder().forBrowser('firefox').build();
-    
+
     try {
         await driver.get('localhost:8080/login').then(async function () {
             await driver.getTitle().then(function (title) {
@@ -67,6 +66,11 @@ test_cases.forEach(async (test_case) => {
                     console.log('Test 2 failed for Teacher page');
                 }
             });
+        }).catch(err => {
+            if (test_case.expect_succes) {
+                console.log("Test failed! Wrong credentials!");
+            }
+            console.log("Test passed! For wrong credentials.");
         });
     }
     finally {
