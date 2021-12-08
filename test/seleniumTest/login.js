@@ -16,7 +16,7 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
                 }
 
             });
-        });;
+        });
 
         const email = 'ASBC@kea.dk'
         const id = driver.findElement(By.id('email'))
