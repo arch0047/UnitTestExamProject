@@ -3,25 +3,29 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
 
 let test_cases = [
     {
+        description: 'Test case 1: Correct Credentials should login',
         email: 'ANDC@kea.dk',
-        password: 'WRONG',
-        expect_succes: false
+        password: '12345678',
+        expect_succes: true
     },
     {
+        description: 'Test case 1: Incorrect email should not login',
         email: 'WRONG',
         password: 'ASBCASBC',
         expect_succes: false
     },
     {
+        description: 'Test case 1: Incorrect password should not login',
         email: 'WRONG@kea.dk',
         password: 'WRONG',
         expect_succes: false
     },
     {
-        email: 'ANDC@kea.dk',
-        password: 'ASBCASBC',
-        expect_succes: true
-    }
+        description: 'Test case 1: Incorrect credentials should not login',
+        email: 'WRONG@kea.dk',
+        password: 'WRONG',
+        expect_succes: false
+    },
 ]
 
 test_cases.forEach(async (test_case) => {
@@ -68,9 +72,9 @@ test_cases.forEach(async (test_case) => {
             });
         }).catch(err => {
             if (test_case.expect_succes) {
-                console.log("Test failed! Wrong credentials!");
+                console.log("---------------------Test failed!", test_case.description);
             }
-            console.log("Test passed! For wrong credentials.");
+            console.log("-------------Test passed!", test_case.description);
         });
     }
     finally {
