@@ -1,5 +1,7 @@
 const { Sequelize } = require('sequelize');
 const { initModels } = require('../models/init-models.js')
+const dotenv = require('dotenv')
+
 
 // define mysql database connection
 const sequelize = new Sequelize({
