@@ -59,7 +59,6 @@ test_cases.forEach(async (test_case) => {
     try {
         await driver.get('localhost:8080/register').then(async function () {
             await driver.getTitle().then(function (title) {
-                console.log(title)
                 if (title === 'Register Page') {
                     log_success('Test passed for reaching the Register page, ' + test_case.description);
                 } else {
