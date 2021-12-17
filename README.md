@@ -29,22 +29,11 @@ You can use these credentials in order to register:
 - email: Ole1234@kea.dk
 - activation code: Ole1234
 
-## How to run the selenium tests
-
-First start the application see [here](#how-to-run-the-application). Make sure the application is running on port 8080.
-
-Then in the root directory of this project run these commands for the login UI test cases:
+## How to run the unit tests
 
 ```
-npm i
-npm run test-login
-```
-
-Then in the root directory of this project run these commands for the register UI test cases:
-
-```
-npm i
-npm run test-register
+npm install
+npm run test
 ```
 
 ### Prerequisites
