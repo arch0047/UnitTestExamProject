@@ -1,10 +1,9 @@
 {
   "name": "multi-db-web-server",
   "version": "1.0.0",
-  "description": "Selenium Interface Unit tests for Rollcall Registration and Login page",
+  "description": "Jest Unit tests for Rollcall Registration and Login page",
   "scripts": {
-    "test-login": "node test/seleniumTest/login.js",
-    "test-registration": "node test/seleniumTest/register.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -13,6 +12,8 @@
   "author": "Archana Stefanos Tariq",
   "homepage": "https://github.com/arch0047/UnitTestExamProject#readme",
   "dependencies": {
-    "selenium-webdriver": "^4.1.0"
+    "bcrypt": "^5.0.1",
+    "jest": "^27.4.3",
+    "supertest": "^6.1.6"
   }
 }
