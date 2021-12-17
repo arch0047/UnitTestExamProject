@@ -14,7 +14,7 @@
 
 ## How to run the application
 
-In the root directory of the project run:
+In the root directory of the application source code (provided separately):
 
 ```
 npm install
@@ -29,40 +29,28 @@ You can use these credentials in order to register:
 - email: Ole1234@kea.dk
 - activation code: Ole1234
 
-## How to run the unit tests
-
-In the root directory of the project run:
-
-```
-npm install
-docker-compose up
-npm run test
-```
-
 ## How to run the selenium tests
 
-In the root directory of the project run these commands to start the server
+First start the application see [here](#how-to-run-the-application). Make sure the application is running on port 8080.
+
+Then in the root directory of this project run these commands for the login UI test cases:
 
 ```
-npm install
-docker-compose up
-npm start
+npm i
+npm run test-login
 ```
 
-Then n the root directory of the project, **but** on a different terminal run this command for the login UI test cases:
+Then in the root directory of this project run these commands for the register UI test cases:
 
 ```
-node test/seleniumTest/login.js
-```
-
-Then n the root directory of the project, **but** on a different terminal run this command for the login UI test cases:
-
-```
-node test/seleniumTest/register.js
+npm i
+npm run test-register
 ```
 
 ### Prerequisites
 
-You need npm, node, docker, docker-compose
+In order to tun the source code of the application you need:
 
-You also need to copy the `.env-sample` to a `.env` file, and add values to the evnironment variables.
+- You need npm, node, docker, docker-compose
+
+- You also need to copy the `.env-sample` to a `.env` file, and add values to the environment variables.
