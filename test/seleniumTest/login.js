@@ -35,6 +35,8 @@ function log_success(message) {
     console.error("\x1b[32m", message, '\x1b[0m');
 }
 
+const pause_duration = 1000;
+
 test_cases.forEach(async (test_case) => {
     let driver = await new Builder().forBrowser('firefox').build();
 
@@ -50,24 +52,24 @@ test_cases.forEach(async (test_case) => {
             });
         });
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, pause_duration));
 
         const email = test_case.email
         const id = driver.findElement(By.id('email'))
         await id.sendKeys(email).then();
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, pause_duration));
 
         const password_id = driver.findElement(By.id('password'))
         await password_id.sendKeys(test_case.password).then();
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, pause_duration));
 
         await driver.findElement(By.id('login-button')).click().then().then().catch(err => console.log(err));
 
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, pause_duration));
 
-        await driver.wait(until.titleIs('Teacher Page'), 1000).then(async function () {
+        await driver.wait(until.titleIs('Teacher Page'), pause_duration).then(async function () {
             await driver.getTitle().then(function (title) {
                 if (title === 'Teacher Page') {
                     log_success('Test passed for Teacher page ' + test_case.description);
