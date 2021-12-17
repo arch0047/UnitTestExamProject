@@ -1,4 +1,3 @@
-
 const { Builder, By, Key, until } = require('selenium-webdriver');
 
 let test_cases = [
@@ -9,24 +8,32 @@ let test_cases = [
         expect_succes: true
     },
     {
-        description: 'Test case 1: Incorrect email should not login',
+        description: 'Test case 2: Incorrect email should not login',
         email: 'WRONG',
         password: 'ASBCASBC',
         expect_succes: false
     },
     {
-        description: 'Test case 1: Incorrect password should not login',
+        description: 'Test case 3: Incorrect password should not login',
         email: 'WRONG@kea.dk',
         password: 'WRONG',
         expect_succes: false
     },
     {
-        description: 'Test case 1: Incorrect credentials should not login',
+        description: 'Test case 4: Incorrect credentials should not login',
         email: 'WRONG@kea.dk',
         password: 'WRONG',
         expect_succes: false
     },
 ]
+
+function log_failure(message) {
+    console.error("\x1b[31m", message, '\x1b[0m');
+}
+
+function log_success(message) {
+    console.error("\x1b[32m", message, '\x1b[0m');
+}
 
 test_cases.forEach(async (test_case) => {
     let driver = await new Builder().forBrowser('firefox').build();
@@ -34,11 +41,10 @@ test_cases.forEach(async (test_case) => {
     try {
         await driver.get('localhost:8080/login').then(async function () {
             await driver.getTitle().then(function (title) {
-                console.log(title)
                 if (title === 'Login Page') {
-                    console.log('Test 1 passed for reaching the Login page');
+                    log_success('Test passed for reaching the Login page, ' + test_case.description);
                 } else {
-                    console.log('Test 1 failed for reaching the Login page');
+                    log_failure('Test failed for reaching the Login page, ' + test_case.description);
                 }
 
             });
@@ -63,18 +69,15 @@ test_cases.forEach(async (test_case) => {
 
         await driver.wait(until.titleIs('Teacher Page'), 1000).then(async function () {
             await driver.getTitle().then(function (title) {
-                console.log(title)
                 if (title === 'Teacher Page') {
-                    console.log('Test 2 passed for Teacher page');
+                    log_success('Test passed for Teacher page ' + test_case.description);
                 } else {
-                    console.log('Test 2 failed for Teacher page');
+                    log_failure('Test failed for Teacher page ' + test_case.description);
                 }
             });
         }).catch(err => {
-            if (test_case.expect_succes) {
-                console.log("---------------------Test failed!", test_case.description);
-            }
-            console.log("-------------Test passed!", test_case.description);
+            if (test_case.expect_succes) log_failure("Test failed for Teacher page, " + test_case.description);
+            else log_success("Test passed for Teacher page, " + test_case.description);
         });
     }
     finally {
