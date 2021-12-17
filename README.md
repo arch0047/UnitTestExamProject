@@ -29,7 +29,7 @@ You can use these credentials in order to register:
 - email: Ole1234@kea.dk
 - activation code: Ole1234
 
-## How to run the tests
+## How to run the unit tests
 
 In the root directory of the project run:
 
@@ -37,6 +37,28 @@ In the root directory of the project run:
 npm install
 docker-compose up
 npm run test
+```
+
+## How to run the selenium tests
+
+In the root directory of the project run these commands to start the server
+
+```
+npm install
+docker-compose up
+npm start
+```
+
+Then n the root directory of the project, **but** on a different terminal run this command for the login UI test cases:
+
+```
+node test/seleniumTest/login.js
+```
+
+Then n the root directory of the project, **but** on a different terminal run this command for the login UI test cases:
+
+```
+node test/seleniumTest/register.js
 ```
 
 ### Prerequisites
